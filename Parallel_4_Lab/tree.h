@@ -1,4 +1,4 @@
-#ifndef _TREE_H
+п»ї#ifndef _TREE_H
 #define _TREE_H
 
 #include <omp.h> 
@@ -10,42 +10,42 @@ template <class NODETYPE>
 class Tree
 {
 public:
-    Tree();                                                    /* конструктор */
-    int insert_node(const NODETYPE&);                         /* вставляет узел */
-    TreeNode<NODETYPE>* delete_node(TreeNode<NODETYPE>*);     /* удаляет узел */
-    void inorder_walk(TreeNode<NODETYPE>*);                    /* печатает все ключи в неубывающем порядке */
-    TreeNode<NODETYPE>* find_max(TreeNode<NODETYPE>*);         /* находит узел с минимальным значением ключа и возвращает указатель на него */
+    Tree();                                                    /* РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ */
+    int insert_node(const NODETYPE&);                         /* РІСЃС‚Р°РІР»СЏРµС‚ СѓР·РµР» */
+    TreeNode<NODETYPE>* delete_node(TreeNode<NODETYPE>*);     /* СѓРґР°Р»СЏРµС‚ СѓР·РµР» */
+    void inorder_walk(TreeNode<NODETYPE>*);                    /* РїРµС‡Р°С‚Р°РµС‚ РІСЃРµ РєР»СЋС‡Рё РІ РЅРµСѓР±С‹РІР°СЋС‰РµРј РїРѕСЂСЏРґРєРµ */
+    TreeNode<NODETYPE>* find_max(TreeNode<NODETYPE>*);         /* РЅР°С…РѕРґРёС‚ СѓР·РµР» СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј РєР»СЋС‡Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРµРіРѕ */
     TreeNode<NODETYPE>* find_min(TreeNode<NODETYPE>*);
     TreeNode<NODETYPE>* find_node(TreeNode<NODETYPE>*, const NODETYPE&);
-    TreeNode<NODETYPE>* find_succsessor(const NODETYPE&);     /* находит элемент с ключем, следующим за данным числом */
-    TreeNode<NODETYPE>* get_root();                            /* возвращает указатель на корень дерева */
+    TreeNode<NODETYPE>* find_succsessor(const NODETYPE&);     /* РЅР°С…РѕРґРёС‚ СЌР»РµРјРµРЅС‚ СЃ РєР»СЋС‡РµРј, СЃР»РµРґСѓСЋС‰РёРј Р·Р° РґР°РЅРЅС‹Рј С‡РёСЃР»РѕРј */
+    TreeNode<NODETYPE>* get_root();                            /* РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕСЂРµРЅСЊ РґРµСЂРµРІР° */
 private:
-    TreeNode<NODETYPE>* root;                                  /* корень */
+    TreeNode<NODETYPE>* root;                                  /* РєРѕСЂРµРЅСЊ */
 };
 
 template<class NODETYPE>
 Tree<NODETYPE>::Tree()
 {
-    root = 0;                      /* в начале дерево пусто */
+    root = 0;                      /* РІ РЅР°С‡Р°Р»Рµ РґРµСЂРµРІРѕ РїСѓСЃС‚Рѕ */
 }
 template<class NODETYPE>
 int Tree<NODETYPE>::insert_node(const NODETYPE& x)
 {
-    TreeNode<NODETYPE>* n = new TreeNode<NODETYPE>(x);  /* создаем новый узел, его мы будем вставлять */
+    TreeNode<NODETYPE>* n = new TreeNode<NODETYPE>(x);  /* СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СѓР·РµР», РµРіРѕ РјС‹ Р±СѓРґРµРј РІСЃС‚Р°РІР»СЏС‚СЊ */
     TreeNode<NODETYPE>* ptr = root;
     TreeNode<NODETYPE>* ptr1 = root;
 
-    n->parent = n->left = n->right = 0;          /* он - лист */
-    while (ptr != 0)                     /* идем от корня и ищем подходящее место для нашего нового элемента, оно должно быть свободно */
+    n->parent = n->left = n->right = 0;          /* РѕРЅ - Р»РёСЃС‚ */
+    while (ptr != 0)                     /* РёРґРµРј РѕС‚ РєРѕСЂРЅСЏ Рё РёС‰РµРј РїРѕРґС…РѕРґСЏС‰РµРµ РјРµСЃС‚Рѕ РґР»СЏ РЅР°С€РµРіРѕ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°, РѕРЅРѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЃРІРѕР±РѕРґРЅРѕ */
     {
-        ptr1 = ptr;                 /* будущий родитель нового узла */
-        if (x < ptr->get_data())  /* по определению нашего дерева - слева значение ключа меньше родителя, */
+        ptr1 = ptr;                 /* Р±СѓРґСѓС‰РёР№ СЂРѕРґРёС‚РµР»СЊ РЅРѕРІРѕРіРѕ СѓР·Р»Р° */
+        if (x < ptr->get_data())  /* РїРѕ РѕРїСЂРµРґРµР»РµРЅРёСЋ РЅР°С€РµРіРѕ РґРµСЂРµРІР° - СЃР»РµРІР° Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р° РјРµРЅСЊС€Рµ СЂРѕРґРёС‚РµР»СЏ, */
             ptr = ptr->left;
         else
-            ptr = ptr->right;   /* справа - больше */
+            ptr = ptr->right;   /* СЃРїСЂР°РІР° - Р±РѕР»СЊС€Рµ */
     }
     n->parent = ptr1;
-    if (ptr1 == 0)                       /* дерево было пусто? */
+    if (ptr1 == 0)                       /* РґРµСЂРµРІРѕ Р±С‹Р»Рѕ РїСѓСЃС‚Рѕ? */
         root = n;
     else
     {
@@ -62,15 +62,15 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE>* z)
 {
     TreeNode<NODETYPE>* y;
     TreeNode<NODETYPE>* x;
-    if (z->left == 0 || z->right == 0)               /* в этой и следующих двух строках ищем вершину y, которую мы потом вырежем из дерева. Это либо z, либо следующий за z */
+    if (z->left == 0 || z->right == 0)               /* РІ СЌС‚РѕР№ Рё СЃР»РµРґСѓСЋС‰РёС… РґРІСѓС… СЃС‚СЂРѕРєР°С… РёС‰РµРј РІРµСЂС€РёРЅСѓ y, РєРѕС‚РѕСЂСѓСЋ РјС‹ РїРѕС‚РѕРј РІС‹СЂРµР¶РµРј РёР· РґРµСЂРµРІР°. Р­С‚Рѕ Р»РёР±Рѕ z, Р»РёР±Рѕ СЃР»РµРґСѓСЋС‰РёР№ Р·Р° z */
         y = z;
     else
         y = find_succsessor(z->get_data());
-    if (y->left != 0)                                  /* x - указатель на существующего ребенка y или 0 если таковых нет */
+    if (y->left != 0)                                  /* x - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ СЂРµР±РµРЅРєР° y РёР»Рё 0 РµСЃР»Рё С‚Р°РєРѕРІС‹С… РЅРµС‚ */
         x = y->left;
     else
         x = y->right;
-    if (x != 0)                                        /* эта и следующие 9 строк - вырезание y */
+    if (x != 0)                                        /* СЌС‚Р° Рё СЃР»РµРґСѓСЋС‰РёРµ 9 СЃС‚СЂРѕРє - РІС‹СЂРµР·Р°РЅРёРµ y */
         x->parent = y->parent;
     if (y->parent == 0)
         root = x;
@@ -81,14 +81,14 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE>* z)
         else
             (y->parent)->right = x;
     }
-    if (y != z)                                        /* если мы вырезали вершин, отличную от z, то ее данные перемещаем в z */
+    if (y != z)                                        /* РµСЃР»Рё РјС‹ РІС‹СЂРµР·Р°Р»Рё РІРµСЂС€РёРЅ, РѕС‚Р»РёС‡РЅСѓСЋ РѕС‚ z, С‚Рѕ РµРµ РґР°РЅРЅС‹Рµ РїРµСЂРµРјРµС‰Р°РµРј РІ z */
         z->data = y->get_data();
     return y;
 }
 template<class NODETYPE>
 TreeNode<NODETYPE>* Tree<NODETYPE>::find_max(TreeNode<NODETYPE>* x)
 {
-    while (x->right != 0)                              /* здесь все очевидно - самыое максимальное значение у самого правого */
+    while (x->right != 0)                              /* Р·РґРµСЃСЊ РІСЃРµ РѕС‡РµРІРёРґРЅРѕ - СЃР°РјС‹РѕРµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Сѓ СЃР°РјРѕРіРѕ РїСЂР°РІРѕРіРѕ */
         x = x->right;
     return x;
 }
@@ -104,15 +104,15 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::find_min(TreeNode<NODETYPE>* x)
 template<class NODETYPE>
 TreeNode<NODETYPE>* Tree<NODETYPE>::find_succsessor(const NODETYPE& val)
 {
-    TreeNode<NODETYPE>* x = find_node(root, val);                     /* получим указатель на ноду с ключем val */
+    TreeNode<NODETYPE>* x = find_node(root, val);                     /* РїРѕР»СѓС‡РёРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРѕРґСѓ СЃ РєР»СЋС‡РµРј val */
     TreeNode<NODETYPE>* y;
     if (x == 0)
         return 0;
-    if (x->right != 0)                                                /* если у нее есть правые дети, то следующий элемент - минимальный в правом поддереве */
+    if (x->right != 0)                                                /* РµСЃР»Рё Сѓ РЅРµРµ РµСЃС‚СЊ РїСЂР°РІС‹Рµ РґРµС‚Рё, С‚Рѕ СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ - РјРёРЅРёРјР°Р»СЊРЅС‹Р№ РІ РїСЂР°РІРѕРј РїРѕРґРґРµСЂРµРІРµ */
         return find_min(x->right);
     y = x->parent;
-    while (y != 0 && x == y->right)                                   /* иначе - идем вверх и ищем первый элемент, являющийся левым
-потомком своего родителя */
+    while (y != 0 && x == y->right)                                   /* РёРЅР°С‡Рµ - РёРґРµРј РІРІРµСЂС… Рё РёС‰РµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚, СЏРІР»СЏСЋС‰РёР№СЃСЏ Р»РµРІС‹Рј
+РїРѕС‚РѕРјРєРѕРј СЃРІРѕРµРіРѕ СЂРѕРґРёС‚РµР»СЏ */
     {
         x = y;
         y = y->parent;
@@ -135,7 +135,7 @@ void Tree<NODETYPE>::inorder_walk(TreeNode<NODETYPE>* n)
 {
     if (n != 0)
     {
-    #pragma omp parallel num_threads(4) //Распараллелить функцию обхода дерева при помощи директивы task
+    #pragma omp parallel num_threads(4) //Р Р°СЃРїР°СЂР°Р»Р»РµР»РёС‚СЊ С„СѓРЅРєС†РёСЋ РѕР±С…РѕРґР° РґРµСЂРµРІР° РїСЂРё РїРѕРјРѕС‰Рё РґРёСЂРµРєС‚РёРІС‹ task
         {
         #pragma omp task
             {
