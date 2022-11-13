@@ -1,4 +1,4 @@
-#ifndef _NODE_H
+п»ї#ifndef _NODE_H
 #define _NODE_H
 
 template <class NODETYPE> class TreeNode
@@ -8,10 +8,10 @@ public:
     TreeNode(const NODETYPE&);
     NODETYPE get_data();
 protected:
-    TreeNode* left;           /* указатель на левого */
-    TreeNode* right;          /* указатель на правого  */
-    TreeNode* parent;         /* указатель на родителя */
-    NODETYPE data;            /* ключ */
+    TreeNode* left;           /* СѓРєР°Р·Р°С‚РµР»СЊ РЅР° Р»РµРІРѕРіРѕ */
+    TreeNode* right;          /* СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂР°РІРѕРіРѕ  */
+    TreeNode* parent;         /* СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРѕРґРёС‚РµР»СЏ */
+    NODETYPE data;            /* РєР»СЋС‡ */
 };
 
 template<class NODETYPE>
